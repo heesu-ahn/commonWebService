@@ -1,0 +1,107 @@
+body {
+    width: 100vw !important;;
+    height: 100vh !important;;
+}
+
+.tempItem {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+ }
+.tempItem #onDilaog {
+    padding:1em;
+    text-align: center;
+    display:inline-block;
+    text-decoration: none !important;
+    margin: auto;
+}
+.tempItem #setImage{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.tempItem #setImage.hidden{
+  display: none;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
+  ul.tabs li{
+    width: calc(35% + 10px);
+    text-align: center;
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  ul.tabs li.current{
+    background: #ededed;
+    color: #222;
+  }
+  span{
+    pointer-events :none;
+  }
+  ul.tabs li span.current{
+    padding: 10px 0;
+    display:inline-block;
+    width: 100%;
+    background: lightgreen;
+    color: black;
+  }
+  
+  .tab-content{
+    display: none;
+    background: #ededed;
+    padding: 15px;
+  }
+  
+  .tab-content.current{
+    display: inherit;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: calc(100% - 10px);
+    margin: 1rem auto;
+    border: 1px solid #ddd;
+    background-color: white;
+  }
+  
+  /* 테이블 행 */
+  th, td {
+    height: 25px;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  th {
+    background-color: #1b1b1b;
+    color: #ddd;
+  }
+  
+  /* 테이블 올렸을 때 */
+  tbody tr:hover {
+    background-color: #d3d3d3;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  #tab-2 p {
+    color: rgba(255, 0, 0, 0.5);
+    font-weight: bold;
+  }

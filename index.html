@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestPage</title>
+    <script type="module" src="./js/core/commonControl.js"></script>
+    <script defer type="module" src="./js/commonModule.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log('DOMContentLoaded');
+            var loadJson = (async function(){
+                const response = await fetch(`/extModuleList.json`);
+                const json = await response.json(); 
+                return json;
+            })();
+            loadJson.then(function(_json){extModuleList = _json; console.log(extModuleList);});
+        });
+    </script>
+</head>
+</head>
+<body>
+    <div id="BODY"></div>
+</body>
+<script>
+    // html element 관련 변수
+    var pageName = 'test1';
+    var commonControl; // 공용 컨트롤 생성 객체
+    var pageControl; // 생성된 컨트롤 객체
+    var extModuleList;
+    var __valueObject;    
+    var variableObject = {
+        value: undefined,
+        set: function (value) {
+            this.value = value;
+            this.getOnChange();
+        }
+    }
+    variableObject.getOnChange = function() {if(this.value) {document.title = this.value;}}
+</script>
+</html>
