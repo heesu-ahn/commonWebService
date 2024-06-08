@@ -18,11 +18,12 @@ export class Observer {
           if(mutation.addedNodes.length > 0){
             const nodes = mutation.addedNodes;
             nodes.forEach((node,index,nodes)=>{
-              if(node.outerHTML && node.id) {
-                const elementId = node.id;
-                const map = {'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#039;'};
-                if(__valueObject && __valueObject.hasOwnProperty(pageName)) __valueObject[pageName][elementId] = node.outerHTML.replace(/[&<>"']/g, function(m) { return map[m]; });
-              }
+              console.log(node);
+              // if(node.outerHTML && node.id) {
+              //   const elementId = node.id;
+              //   const map = {'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#039;'};
+              //   if(__valueObject && __valueObject.hasOwnProperty(pageName)) __valueObject[pageName][elementId] = node.outerHTML.replace(/[&<>"']/g, function(m) { return map[m]; });
+              // }
             });
           }
         } else if (mutation.type === "attributes") {
