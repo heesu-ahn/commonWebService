@@ -4,14 +4,12 @@ var ctrl_3 = new commonControl('test3');
 */
 ctrl_3.copyCommonPageControl(ctrl_3);
 ctrl_3.loadExtentionScript(function(result){
-    console.log(result);
     Promise.resolve(createElement(result));
     return result;
 },extModuleList.dev);
 
 function createElement(_result){
     if(_result.src.toLowerCase().includes('backbone')){
-        console.log(_result);
         var ElementDef = Backbone.View.extend({
             tagName: 'button',
             className: 'pageMove',
@@ -21,7 +19,6 @@ function createElement(_result){
         createElement(elementList);
         function createElement(_list){
             _list.forEach(function(id){
-                console.log(element);
                 var elementDef = new ElementDef();
                 var element = elementDef.el;
                 element.id = id;
@@ -33,7 +30,6 @@ function createElement(_result){
             });
         }
         function movePage(el){
-            console.log(el.id);
             variableObject.set(el.id);
         }
     }
