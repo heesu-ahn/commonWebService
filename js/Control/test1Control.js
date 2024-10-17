@@ -9,47 +9,30 @@ ctrl_1.loadExtentionScript(function(result){
     });
 },extModuleList.prod);
 
+var asyncModule;
 function createElement(_result){
     var regExp = /backbone/gi;
     if(_result.src.match(regExp)){
-        var backboneSync = Backbone.sync;
-        
-        var post = Backbone.Model.extend(); 
-        var collection = Backbone.Collection.extend({ 
-            model: post, 
-            type : 'POST',
-            //url: 'https://jsonplaceholder.typicode.com/users', 
-            url: 'https://chroniclingamerica.loc.gov/search/titles/results/?terms=oakland&format=json&page=5',
-            xhrFields: {
-                withCredentials: true
-            },
-            sync: function (method, model, options) {
-                options || (options = {});
-                
-                // Lets notify backbone to use our URLs and do follow default course
-                return Backbone.sync.apply(this, arguments);
+        var param = new Object();
+        var paramData = new Object();
+        paramData.type = 'GET';
+        url = 'https://chroniclingamerica.loc.gov/search/titles/results/?terms=oakland&format=json&page=5';
+        paramData.param = param;
+        paramData.url = url;
+        try {
+            var existsModuleCheck = asynAjsxModule;
+            if(existsModuleCheck != undefined){
+                asynAjsxModule.getResquestData(paramData,function(resp){
+                    console.log(resp);
+                });
             }
-        }); 
-
-        // Backbone.sync = _.wrap(Backbone.sync, function(sync, method, model, options) {
-        //     if (!options.xhrFields) {
-        //         options.xhrFields = {withCredentials:true};
-        //     }
-        //     options.headers = options.headers || {};
-        //     options.headers['method'] = 'POST';
-        //     options.headers['mode'] = 'cors';
-        //     options.headers['cache'] = 'no-cache';
-        //     options.headers['credentials'] = 'same-origin';
-        //     options.headers['method'] = 'POST';
-        //     options.headers['Accept'] = 'application/json';
-        //     options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-        //     options.headers['redirect'] = 'follow';
-        //     options.headers['referrerPolicy'] = 'no-referrer';
-        
-        //     sync(method, model, options);
-        // });
-        var posts = new collection(); 
-        posts.fetch(); 
-        console.log(posts) 
-    };
+        } catch (error) {
+            console.log('시스템 준비중입니다.');
+            setTimeout(() => {                
+                asynAjsxModule.getResquestData(paramData,function(resp){
+                    console.log(resp);
+                });
+            }, 10);
+        }
+    }
 };

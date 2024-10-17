@@ -15,7 +15,9 @@
                 const json = await response.json(); 
                 return json;
             })();
-            loadJson.then(function(_json){extModuleList = _json; console.log(extModuleList);});
+            loadJson.then(function(_json){
+                extModuleList = _json; 
+            });
         });
     </script>
 </head>
