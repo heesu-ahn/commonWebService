@@ -1,4 +1,4 @@
 {
-    "prod" : ["/js/Ext/asyncModule.js","/js/Ext/backbone.min.js"],
-    "dev" : ["/js/Ext/asyncModule.js","/js/Ext/underscore.js","/js/Ext/jquery.js","/js/Ext/backbone.js"]
+    "prod" : ["/js/Ext/backbone.min.js"],
+    "dev" : ["/js/Ext/underscore.js","/js/Ext/jquery.js","/js/Ext/backbone.js"]
 }

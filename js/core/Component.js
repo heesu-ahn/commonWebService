@@ -123,7 +123,7 @@ export class ComponentView {
       convertArrayItemData(document.head.childNodes,
         function(item){
           if(item.localName && item.localName == 'script' 
-          && (!item.src.includes('commonModule') && !item.src.includes('commonControl'))){
+          && (!item.src.includes('asyncModule') && !item.src.includes('commonModule') && !item.src.includes('commonControl'))){
             document.head.removeChild(item);
           }
       });
