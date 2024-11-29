@@ -30,6 +30,12 @@ class callAsyncModule{
 var asynAjsxModule = (function(){
     var getResquestData = function(_paramerter,_completeFn) {
         var callbackFn = _completeFn;
+
+        // Backbone.$.ajaxSetup({
+        //     'beforeSend': function(xhr) {
+        //         xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        //     }
+        // });
         promiseModule(_paramerter,function(cb){
             callbackFn(cb);
         });
@@ -58,15 +64,15 @@ var asynAjsxModule = (function(){
         if(_paramData.type == undefined) _paramData.type = 'POST';
         
         _ajaxCallback(
-            
-            Backbone.ajax({
+            $.ajax({
                 type : _paramData.type,
                 async : true,
                 url : _paramData.url,
                 data : _paramData.param,
                 dataType : _paramData.dataType,
-                beforeSend : function() {
-
+                crossDomain: true,
+                beforeSend : function(xhr) {
+                    
                 },
                 success : function(data) {
                     return data;
@@ -74,8 +80,8 @@ var asynAjsxModule = (function(){
                 error : function(data, status, err) {
                     alert('오류가 발생하였습니다.\n' + err);
                 },
-                complete : function() {    
-                    
+                complete : function(data) {    
+                    return data;
                 }
             })
         );
@@ -118,9 +124,52 @@ var asynAjsxModule = (function(){
         }
     }
 
+    function createSubmitForm(){
+        var FormModel = Backbone.Model.extend({
+            defaults: {
+                projectName: '',
+                formName: '',
+                paramList : {},
+                datasetList : {}
+            }
+        });
+        var RequestView = Backbone.View.extend({
+            el: '#indexForm',
+            events: {
+              'submit': 'onSubmit'
+            },
+            initialize: function() {
+              this.model = new FormModel();
+            },
+            render: function() {
+              // 뷰의 HTML 템플릿을 렌더링하여 화면에 보여줌
+              var template = _.template($('#indexForm').html());
+              this.$el.html(template(this.model.toJSON()));
+            },
+            onSubmit: function(event) {
+                event.preventDefault();
+                this.model.set({
+                    projectName: $("#projectName").val(),
+                    formName: $("#formName").val(),
+                    paramList: $("#paramList").val(),
+                    datasetList: $("#datasetList").val()
+                });
+                console.log(JSON.stringify(this.model.toJSON()));
+                console.log(this.el);
+                document.body.appendChild(this.el); 
+                this.el.submit();
+                document.body.removeChild(this.el); 
+            }
+        });
+        var form = new RequestView();
+        form.render();
+        return form;
+    }
+
     return{
         getResquestData : getResquestData,
         promiseModule : promiseModule,
-        ajaxCall : ajaxCall
+        ajaxCall : ajaxCall,
+        createSubmitForm : createSubmitForm,
     }
 })();

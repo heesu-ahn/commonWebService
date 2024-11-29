@@ -131,7 +131,7 @@ export class ComponentView {
       convertArrayItemData(document.head.childNodes,
         function(item){
           if(item.localName && item.localName == 'link'){
-            document.head.removeChild(item);
+            !item.rel.includes('icon') && document.head.removeChild(item);
           }
       });
     }
