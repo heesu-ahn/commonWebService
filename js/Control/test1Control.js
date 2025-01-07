@@ -32,15 +32,9 @@ function getDataSet(_result,_form,_callback){
         paramData.type = 'POST';
         paramData.param = new Object();
         paramData.param = {
-            "FILE_TYPE":"exec",
-            "CALL":"VIEWER5",
-            "METHOD_NAME":"getProjectList",
-            "ENCODE_KEYSIZE":"256",
-            "IS_UBPARAMS_ENCODED":"YES",
-            "UBPARAMS":"Vcnf6ZZPeLDryCk5kNg96g==",
-            "LOAD_TYPE":"div",
+            
         };
-        paramData.url = 'http://127.0.0.1:8081/UBIServerWeb2/TestPage/index.html?varaiable=test';
+        paramData.url = '';
         if(iframe != undefined) paramData.iframe = iframe;
         tryCallAjaxModlue(paramData,function(_result){
             return callbackFn(_result);
