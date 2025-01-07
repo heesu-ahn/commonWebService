@@ -30,12 +30,6 @@ class callAsyncModule{
 var asynAjsxModule = (function(){
     var getResquestData = function(_paramerter,_completeFn) {
         var callbackFn = _completeFn;
-
-        // Backbone.$.ajaxSetup({
-        //     'beforeSend': function(xhr) {
-        //         xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-        //     }
-        // });
         promiseModule(_paramerter,function(cb){
             callbackFn(cb);
         });
